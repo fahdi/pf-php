@@ -2,6 +2,12 @@
 
 /**
  * Boarding pass
+  * This base class will implement all the properties and methods
+ * that are common to all modes of transportation.
+ *
+ * Each mode of transportation will extend BoardingPass
+ * and add properties and methods that are specific
+ * to that particular mode of transportation. Sweet!
  */
 class BoardingPass
 {
@@ -137,7 +143,7 @@ class TripSorter
 
     public function TripSorter($boardingPasses)
     {
-        $this->boardingPasses = $boardingPasses;
+        private $this->boardingPasses = $boardingPasses;
 
         /*
         }
@@ -173,8 +179,8 @@ class TripSorter
 
     private function createIndex()
     {
-        $this->departureIndex = [];
-        $this->arrivalIndex = [];
+        private $this->departureIndex = array();
+        private $this->arrivalIndex = array();
 
         for ($i = 0; $i < count($this->boardingPasses); $i++) {
 // A shortcut 
@@ -211,7 +217,11 @@ class Trip
         $this->boardingPasses = $boardingPasses;
 
 // Trip uses TripSorter to make sure everything is in order. 
-        $this->boardingPasses = new TripSorter($this->boardingPasses) . sort();
+        $this->boardingPasses = new TripSorter($this->boardingPasses);
+
+	    // Sort it
+	    sort($this->boardingPasses);
+
     }
 
 // Define how to convert a trip to a string. 
