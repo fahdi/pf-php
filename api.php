@@ -128,11 +128,13 @@ class FlightBoardingPass extends BoardingPass
 
 }
 
+/**
+ * The trip sorter "class".
+ */
+
 class TripSorter
 {
-    /**
-     * The trip sorter "class".
-     */
+
     public function TripSorter($boardingPasses)
     {
         $this->boardingPasses = $boardingPasses;
@@ -217,7 +219,7 @@ class Trip
     {
 // Convert each boarding pass to a string, and concatenate them together. 
         $str = '';
-        for ($i = 0; $i < $this->boardingPasses . length; $i++) {
+        for ($i = 0; $i < count($this->boardingPasses); $i++) {
             $str .= $this->boardingPasses[i] . toString() . '\n';
         }
 

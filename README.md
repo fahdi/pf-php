@@ -49,14 +49,23 @@ Hint: we are not looking for a solution designed to demonstrate your entire know
 	Start time: 4:00 PM UAE time
 
 # Dev Stack Used
+
 MAMP Pro with PHP 5.5.10
 Sublime Edit 3
-PhpStorm
+PhpStorm 7.1
+Terminal for php cli
+
 
 # Methodology
+
 - Regular OOP based PHP
-- The boarding passes/cards have this follwing common info so a genric pass is 
-	- 
+- The boarding passes/cards have this follwing common info so a genric pass consists of:
+	- Departure Location
+	- Arrival Location
+	- Seat #
+- A train, plane, airport, aiport bus or any other terminal boarding passes have one additional info that is the repective train #, flight #, bus # etc
+- There is one super object boprading pass and for the bus, plane, train, airport bus etc, there is additional info with the respetive number info. This makes that info to be addiotional to a boarding pass class. This makes me able to make a class and use DRY principle
+- 
 
 
 

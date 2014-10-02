@@ -1,3 +1,4 @@
 *.idea/**/**.xml
 *.idea/**.xml
 /dummy.php
+/api-ignore.php
