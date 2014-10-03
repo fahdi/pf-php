@@ -11,7 +11,6 @@ include_once('api.php');
     new FlightBoardingPass('Gerona Airport', 'Stockholm', '3A', 'SK455', '45B', '344')
   ]);
 
-
-//$myTrip->TripString();
+echo $myTrip->TripString();
 
 ?>

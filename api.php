@@ -1,17 +1,17 @@
 <?php
 /**
  * Trip sorter API main file
- * 
- * This file has the whole sorting algorithm for boarding cards. 
+ *
+ * This file has the whole sorting algorithm for boarding cards.
  * It has three classes
  * One for generic main Boarding Pass named BoardingPass ( Base class)
- * One for Train Boarding Pass named TrainBoardingPass which inherits from main BoardingPass class 
- * One for AirportBusBoardingPass which inherits from main BoardingPass class 
- * One for 
- * 
+ * One for Train Boarding Pass named TrainBoardingPass which inherits from main BoardingPass class
+ * One for AirportBusBoardingPass which inherits from main BoardingPass class
+ * One for
+ *
  * This fi
  */
-if(count(get_included_files()) ==1) exit("Direct access not permitted. Please refer to the docs provided with your API");
+if (count(get_included_files()) == 1) exit("Direct access not permitted. Please refer to the docs provided with your API");
 ini_set('memory_limit', '-1');
 
 /**
@@ -86,6 +86,11 @@ class BoardingPass
 		return $obj->arrivalLocation;
 	}
 
+	public static function getSeat($obj)
+	{
+		return $obj->seat;
+	}
+
 }
 
 /**
@@ -107,9 +112,9 @@ class TrainBoardingPass extends BoardingPass
 	}
 
 // Define how to convert a train boarding pass to a string. 
-	function TrainBoardingPassString()
+	public function toString()
 	{
-		return 'Take train ' . $this->train . ' from ' . $this->departureLocation . ' to ' . $this->arrivalLocation . '. Sit in $seat ' . $this->seat . '.';
+		return 'Take train ' . $this->train . ' from ' . boardingPass::getDepartureLocation($this) . ' to ' . boardingPass::getarrivalLocation($this) . '. Sit in $seat ' . boardingPass::getSeat($this) . '.';
 	}
 
 }
@@ -125,16 +130,16 @@ class AirportBusBoardingPass extends BoardingPass
 //print "<br/>In Airport Boarding Passs constructor\n";
 	}
 
-/**
-* There doesn't seem to be any case specific to airport buses. But its for the follwing reason in requirements
-* 3. Be prepared to suggest to us how we could extend the code towards new types of transportation, which might have different characteristics.	
-* Nonetheless, we create this "class" for completeness. And later code completely if needed
-*/
+	/**
+	 * There doesn't seem to be any case specific to airport buses. But its for the follwing reason in requirements
+	 * 3. Be prepared to suggest to us how we could extend the code towards new types of transportation, which might have different characteristics.
+	 * Nonetheless, we create this "class" for completeness. And later code completely if needed
+	 */
 
 
-	function AirportBusBoardingPassString()
+	public function toString()
 	{
-		return 'Take the airport bus from ' . $this->departureLocation . ' to ' . $this->arrivalLocation . '. ' . ($this->seat ? 'Sit in seat ' . $this->seat . '.' : 'No seat assignment.');
+		return 'Take the airport bus from ' . boardingPass::getDepartureLocation($this) . ' to ' . boardingPass::getarrivalLocation($this) . '. ' . (boardingPass::getSeat($this) ? 'Sit in seat ' . boardingPass::getSeat($this) . '.' : 'No seat assignment.');
 	}
 
 }
@@ -146,6 +151,7 @@ class AirportBusBoardingPass extends BoardingPass
 class FlightBoardingPass extends BoardingPass
 {
 	private $flight, $gate, $counter;
+
 	function __construct($departureLocation, $arrivalLocation, $seat, $flight, $gate, $counter = null)
 	{
 		parent::__construct($departureLocation, $arrivalLocation, $seat);
@@ -168,9 +174,9 @@ class FlightBoardingPass extends BoardingPass
 
 //$FlightBoardingPass = new BoardingPass();
 
-	function FlightBoardingPassString()
+	public function toString()
 	{
-		return 'From ' . $this->departureLocation . ', take flight ' . $this->flight . ' to ' . $this->$arrivalLocation . '. Gate ' . $this->gate . ', seat ' . $this->seat . '. ' . ($this->counter ? 'Baggage drop at ticket counter ' . $this->counter . '.' : 'Baggage will be automatically transferred from your last leg.');
+		return 'From ' . boardingPass::getDepartureLocation($this) . ', take flight ' . $this->flight . ' to ' . boardingPass::getarrivalLocation($this) . '. Gate ' . $this->gate . ', seat ' . boardingPass::getSeat($this) . '. ' . ($this->counter ? 'Baggage drop at ticket counter ' . $this->counter . '.' : 'Baggage will be automatically transferred from your last leg.');
 	}
 
 }
@@ -180,7 +186,8 @@ class FlightBoardingPass extends BoardingPass
  */
 class TripSorter
 {
-	function TripSorter($boardingPasses) {
+	function TripSorter($boardingPasses)
+	{
 		$this->boardingPasses = $boardingPasses;
 	}
 
@@ -200,7 +207,7 @@ class TripSorter
 		$sortedBoardingPasses = array();
 		$currentLocation = $startingLocation;
 // Assign respective boarding pass while checking for undefined index
-		while ($currentBoardingPass = (array_key_exists($currentLocation,$this->departureIndex))? $this->departureIndex[$currentLocation] : null ) {
+		while ($currentBoardingPass = (array_key_exists($currentLocation, $this->departureIndex)) ? $this->departureIndex[$currentLocation] : null) {
 			/*
 			* echo "current location".$currentLocation."<br/>";
 			* echo "Current Boarding Passs<pre>";
@@ -219,7 +226,6 @@ class TripSorter
 		return $sortedBoardingPasses;
 	}
 
-	
 
 	function createIndex()
 	{
@@ -254,7 +260,7 @@ class TripSorter
 			print_r($this->arrivalIndex);
 		echo "</pre>";	
 		*/
-		
+
 	}
 
 
@@ -262,12 +268,12 @@ class TripSorter
 	{
 
 		for ($counter = 0; $counter < count($this->boardingPasses); $counter++) {
-			
+
 // A shortcut, I am not proud of it
 			$departureLocation = boardingPass::getDepartureLocation($this->boardingPasses[$counter]);
-			
+
 // The starting location is a place we depart from but never arrived at, sweet!
-			if (!array_key_exists($departureLocation,$this->arrivalIndex)) {
+			if (!array_key_exists($departureLocation, $this->arrivalIndex)) {
 				//echo  "Starting Location:". $departureLocation;
 				return $departureLocation;
 			}
@@ -292,7 +298,7 @@ class Trip
 		$boardingPasses = new TripSorter($this->boardingPasses);
 
 // Sort it
-		 $this->boardingPasses = $boardingPasses->sort(); // Send the complete array to the sort function
+		$this->boardingPasses = $boardingPasses->sort(); // Send the complete array to the sort function
 
 	}
 
@@ -301,12 +307,14 @@ class Trip
 	{
 // Convert each boarding pass to a string, and concatenate them together. 
 		$str = '';
-		for ($i = 0; $i < count($this->boardingPasses); $i++) {
-			$str .= (string)$this->boardingPasses[$i]. '\n';
+		for ($counter = 0; $counter < count($this->boardingPasses); $counter++) {
+			$currentPass = $this->boardingPasses[$counter];
+			$currentClass = get_class($currentPass);
+			$str .= $currentPass->toString() . '<br/>' . PHP_EOL;
 		}
 
 // Final greetings. 
-		$str .= 'You have arrived at your final destination.\n';
+		$str .= 'You have arrived at your final destination.<br/>' . PHP_EOL;
 
 		return $str;
 	}
