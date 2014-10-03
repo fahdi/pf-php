@@ -1,6 +1,15 @@
 <?php
 /**
  * Trip sorter API main file
+ * 
+ * This file has the whole sorting algorithm for boarding cards. 
+ * It has three classes
+ * One for generic main Boarding Pass named BoardingPass ( Base class)
+ * One for Train Boarding Pass named TrainBoardingPass which inherits from main BoardingPass class 
+ * One for AirportBusBoardingPass which inherits from main BoardingPass class 
+ * One for 
+ * 
+ * This fi
  */
 if(count(get_included_files()) ==1) exit("Direct access not permitted. Please refer to the docs provided with your API");
 ini_set('memory_limit', '-1');
@@ -190,8 +199,15 @@ class TripSorter
 // This step takes O(n) time.
 		$sortedBoardingPasses = array();
 		$currentLocation = $startingLocation;
-
-		while ($currentBoardingPass = $this->departureIndex[$currentLocation]) {
+// Assign respective boarding pass while checking for undefined index
+		while ($currentBoardingPass = (array_key_exists($currentLocation,$this->departureIndex))? $this->departureIndex[$currentLocation] : null ) {
+			/*
+			* echo "current location".$currentLocation."<br/>";
+			* echo "Current Boarding Passs<pre>";
+			* print_r($currentBoardingPass); // This needs fixing
+			* echo "</pre>";
+			*/
+			$currentBoardingPass;
 // Add the boarding pass to our sorted list.
 			array_push($sortedBoardingPasses, $currentBoardingPass);
 
