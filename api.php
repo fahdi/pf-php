@@ -3,15 +3,29 @@
  * Trip sorter API main file
  *
  * This file has the whole sorting algorithm for boarding cards.
- * It has three classes
+ * It has a few classes:
  * One for generic main Boarding Pass named BoardingPass ( Base class)
  * One for Train Boarding Pass named TrainBoardingPass which inherits from main BoardingPass class
- * One for AirportBusBoardingPass which inherits from main BoardingPass class
- * One for
+ * One for Airport Bus Boarding Pass named AirportBusBoardingPass  which inherits from main BoardingPass class
+ * One for Flight Boarding Pass named accordingly which inherits from main BoardingPass class
+ * One named TripSorter which sorts a group of Boarding Passes
+ * One named Trip which creates an object containing mutiple boarding passes. Trip uses Tripsorter to get sorted results.
  *
- * This fi
+ */
+
+/**
+ * Turn on error reporting.
+ */
+error_reporting(E_ALL);
+
+/**
+ * Disallow direct access to the file
  */
 if (count(get_included_files()) == 1) exit("Direct access not permitted. Please refer to the docs provided with your API");
+
+/**
+ * Give PHP unlimited memory, feed the monster!
+ */
 ini_set('memory_limit', '-1');
 
 /**
@@ -31,6 +45,9 @@ class BoardingPass
 	private $arrivalLocation = '';
 	private $seat = '';
 
+	/**
+	 * BoardingPass Constructor
+	 */
 	function __construct($departureLocation, $arrivalLocation, $seat)
 	{
 		$this->departureLocation = $departureLocation;
@@ -54,10 +71,10 @@ class BoardingPass
 // we need to provide public getter methods.
 
 	/**
-	 * A summary informing the user what the associated element does.
+	 * Takes an object of any class inheriting from BoardingPass and returns departure location
 	 *
-	 * A *description*, that can span multiple lines, to go _in-depth_ into the details of this element
-	 * and to provide some background information or textual references.
+	 * Takes an object of any class inheriting from BoardingPass and returns departure location
+	 * Return the property departureLocation of an object of a child class with parent being 'BoardingPass'
 	 *
 	 * @param  $obj With a *description* of this argument, these may also
 	 *    span multiple lines.
@@ -71,10 +88,10 @@ class BoardingPass
 	}
 
 	/**
-	 * A summary informing the user what the associated element does.
+	 * Takes an object of any class inheriting from BoardingPass and returns arrival location
 	 *
-	 * A *description*, that can span multiple lines, to go _in-depth_ into the details of this element
-	 * and to provide some background information or textual references.
+	 * Takes an object of any class inheriting from BoardingPass and returns arrival location
+	 * Return the property arrivalLocation of an object of a child class with parent being 'BoardingPass'
 	 *
 	 * @param  $obj With a *description* of this argument, these may also
 	 *    span multiple lines.
@@ -86,6 +103,17 @@ class BoardingPass
 		return $obj->arrivalLocation;
 	}
 
+	/**
+	 * Takes an object of a  class containing seat information,  inheriting from BoardingPass and returns seat #
+	 *
+	 * Takes an object of any class with additional seat property, inheriting from BoardingPass and returns returns seat #
+	 * Return the property seat of an object of a child class with parent being 'BoardingPass'
+	 *
+	 * @param  $obj With a *description* of this argument, these may also
+	 *    span multiple lines.
+	 *
+	 * @return $obj->seat;
+	 */
 	public static function getSeat($obj)
 	{
 		return $obj->seat;
@@ -94,14 +122,16 @@ class BoardingPass
 }
 
 /**
- * Train boarding pass.
+ * Train boarding pass. Child of BoardingPass. Adds train information to the basic boarding pass.
  */
 class TrainBoardingPass extends BoardingPass
 {
 	private $train;
 // We need to explicitly call the "super" constructor. 
 // Then we handle the stuff specific to trains. 
-
+	/**
+	 * Constructor for TrainBoardingPass
+	 */
 	function __construct($departureLocation, $arrivalLocation, $seat, $train)
 	{
 // This is the step that creates the inheritance chain,
@@ -111,10 +141,14 @@ class TrainBoardingPass extends BoardingPass
 		$this->train = $train;
 	}
 
-// Define how to convert a train boarding pass to a string. 
+// Define how to convert a train boarding pass to a string.
+	/**
+	 * Converts an object of TrainBoardingPass into human readable instruction set. This relates to only trains.
+	 *
+	 */
 	public function toString()
 	{
-		return 'Take train ' . $this->train . ' from ' . boardingPass::getDepartureLocation($this) . ' to ' . boardingPass::getarrivalLocation($this) . '. Sit in $seat ' . boardingPass::getSeat($this) . '.';
+		return 'Take train ' . $this->train . ' from ' . boardingPass::getDepartureLocation($this) . ' to ' . boardingPass::getarrivalLocation($this) . '. Sit in seat ' . boardingPass::getSeat($this) . '.';
 	}
 
 }
@@ -124,6 +158,9 @@ class TrainBoardingPass extends BoardingPass
  */
 class AirportBusBoardingPass extends BoardingPass
 {
+	/**
+	 * Constructor for AirportBusBoardingPass
+	 */
 	function __construct($departureLocation, $arrivalLocation, $seat = null)
 	{
 		parent::__construct($departureLocation, $arrivalLocation, $seat);
@@ -136,7 +173,10 @@ class AirportBusBoardingPass extends BoardingPass
 	 * Nonetheless, we create this "class" for completeness. And later code completely if needed
 	 */
 
-
+	/**
+	 * Converts an object of AirportBusBoardingPass into human readable instruction set. This relates to only Airport passes.
+	 *
+	 */
 	public function toString()
 	{
 		return 'Take the airport bus from ' . boardingPass::getDepartureLocation($this) . ' to ' . boardingPass::getarrivalLocation($this) . '. ' . (boardingPass::getSeat($this) ? 'Sit in seat ' . boardingPass::getSeat($this) . '.' : 'No seat assignment.');
@@ -152,6 +192,9 @@ class FlightBoardingPass extends BoardingPass
 {
 	private $flight, $gate, $counter;
 
+	/**
+	 * Constructor for FlightBoardingPass
+	 */
 	function __construct($departureLocation, $arrivalLocation, $seat, $flight, $gate, $counter = null)
 	{
 		parent::__construct($departureLocation, $arrivalLocation, $seat);
@@ -163,17 +206,12 @@ class FlightBoardingPass extends BoardingPass
 //print "<br/>In Flight Boarding Passs constructor\n";
 	}
 
-	public function FlightBoardingPass($departureLocation, $arrivalLocation, $seat, $flight, $gate, $counter = '')
-	{
-//BoardingPass($this, $departureLocation, $arrivalLocation, $seat);
-
-		$this->flight = $flight;
-		$this->gate = $gate;
-		$this->counter = $counter;
-	}
-
 //$FlightBoardingPass = new BoardingPass();
 
+	/**
+	 * Converts an object of FlightBoardingPass into human readable instruction set. This relates to only Flight boarding passes.
+	 *
+	 */
 	public function toString()
 	{
 		return 'From ' . boardingPass::getDepartureLocation($this) . ', take flight ' . $this->flight . ' to ' . boardingPass::getarrivalLocation($this) . '. Gate ' . $this->gate . ', seat ' . boardingPass::getSeat($this) . '. ' . ($this->counter ? 'Baggage drop at ticket counter ' . $this->counter . '.' : 'Baggage will be automatically transferred from your last leg.');
@@ -182,16 +220,26 @@ class FlightBoardingPass extends BoardingPass
 }
 
 /**
- * The trip sorter "class".
+ * The trip sorter "class". Contains all the sorting algorithm for n number of of boarding passes.
  */
 class TripSorter
 {
+	/**
+	 * Constructor for TripSorter
+	 */
 	function TripSorter($boardingPasses)
 	{
 		$this->boardingPasses = $boardingPasses;
 	}
 
-// This is the main sorting thing
+	/**
+	 * Function to sort n number of boarding passes each within a single key of an array.
+	 * So essentially an object of type TripSorter is a re-initialized Trip object.
+	 *
+	 * @param $this
+	 *
+	 * @return $sortedBoardingPasses
+	 */
 	public function sort()
 	{
 
@@ -226,7 +274,10 @@ class TripSorter
 		return $sortedBoardingPasses;
 	}
 
-
+	/**
+	 * This function creates associative arrays of the randomly arranged boarsing pases.
+	 * So essentially an object of type TripSorter is a re-initialized Trip object.
+	 */
 	function createIndex()
 	{
 		$departureIndex = array();
@@ -288,7 +339,9 @@ class TripSorter
 class Trip
 {
 
-
+	/**
+	 * Constructor
+	 */
 	public function __construct($boardingPasses)
 	{
 		// All unordered
@@ -306,20 +359,19 @@ class Trip
 	public function TripString()
 	{
 // Convert each boarding pass to a string, and concatenate them together. 
-		$str = '';
+		$str = '<ol>';
 		for ($counter = 0; $counter < count($this->boardingPasses); $counter++) {
 			$currentPass = $this->boardingPasses[$counter];
 			$currentClass = get_class($currentPass);
-			$str .= $currentPass->toString() . '<br/>' . PHP_EOL;
+			$str .= '<li>' . $currentPass->toString() . '</li>' . PHP_EOL;
 		}
 
 // Final greetings. 
-		$str .= 'You have arrived at your final destination.<br/>' . PHP_EOL;
-
+		$str .= '<li>You have arrived at your final destination.</li>' . PHP_EOL;
+		$str .= '</ul>';
 		return $str;
 	}
 
 }
-
 
 ?>
