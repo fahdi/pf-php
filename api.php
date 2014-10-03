@@ -2,7 +2,7 @@
 /**
  * Trip sorter API main file
  */
-
+if(count(get_included_files()) ==1) exit("Direct access not permitted. Please refer to the docs provided with your API");
 ini_set('memory_limit', '-1');
 
 /**

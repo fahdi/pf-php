@@ -12,6 +12,6 @@ include_once('api.php');
   ]);
 
 
-$myTrip->TripString();
+//$myTrip->TripString();
 
 ?>
