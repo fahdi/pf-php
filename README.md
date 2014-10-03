@@ -1,6 +1,3 @@
-pf-php
-======
-
 #Trip sorter
 
 	Guide time allowed: 2 hours Task
@@ -56,22 +53,14 @@ PhpStorm 7.1
 Terminal for php cli
 
 
-# Methodology
+# Underatanding/ Methodology
 
-- Regular OOP based PHP
+- Regular OOP based PHP is used for creating the API. 
+- I have kept the testing simple. 
 - The boarding passes/cards have this follwing common info so a genric pass consists of:
 	- Departure Location
 	- Arrival Location
 	- Seat #
-- A train, plane, airport, aiport bus or any other terminal boarding passes have one additional info that is the repective train #, flight #, bus # etc
-- There is one super object boprading pass and for the bus, plane, train, airport bus etc, there is additional info with the respetive number info. This makes that info to be addiotional to a boarding pass class. This makes me able to make a class and use DRY principle
-- 
-
-
-
-
-
-
-
-
-
+- A train, plane, airport, aiport bus or any other terminal boarding passes have additional info that is the repective train #, flight #, bus #, terminal #, Gate # etc. This means is one super object for the boarding pass and for the bus, plane, train, airport bus etc, there is additional info with the respetive detail.
+- Since there is extra info pertaining to each class, on top of a boarding pass class, this enables me to make a base class and use DRY principle to inherit other kinds of passes from it.
+- After creating the respective classes, each class can be used to create a boparding bass of certain type all inheriting from the base class.
