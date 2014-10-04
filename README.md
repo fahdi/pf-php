@@ -41,11 +41,11 @@ complexity.
 Hint: we are not looking for a solution designed to demonstrate your entire knowledge of PHP. Please just make appropriate use of the language to solve the problem in hand cleanly.
 
 
-##PF PHP test development info
+#PF PHP test development info
 
 	Start time: 4:00 PM UAE time
 
-# Dev Stack Used
+## Dev Stack Used
 
 MAMP Pro with PHP 5.5.10
 - Sublime Edit 3
@@ -55,7 +55,7 @@ MAMP Pro with PHP 5.5.10
 - composer for getting phpdoc as PEAR was not working fine
 
 
-# Understanding/ Methodology
+## Understanding/ Methodology
 
 - Regular OOP based PHP is used for creating the API. 
 - I have kept the testing simple. 
@@ -70,7 +70,7 @@ MAMP Pro with PHP 5.5.10
 - A trip class consists of n number of boarding passes of various types. It creates a TripSorter object and then uses a sorting method from TripSorter to get the same object with sorted boarding passes.
 
 
-# Example Usage
+## Example Usage
 
 As in index.php file:
 
@@ -91,9 +91,20 @@ As in index.php file:
 
 	?>
 
-It should output sorted list. There is test code in test.php which tests it with different order. 	
+It should output sorted list. There is test code in test.php which tests it with different order.
 
-# I admit
+##Demo
+
+Result: http://www.gravixardemos.com/pf-php/
+Tests: http://www.gravixardemos.com/pf-php/test.php ( Not proper by any means)
+
+
+##Documentation
+
+http://www.gravixardemos.com/pf-php/docs/
+
+
+## I admit
 
 - Having worked extensively on CMS systems hasn't helped my OOP skills and rusted my skills. Damn you Wordpress!
 - Had too much distraction due to construction work I am managing at home. That is why my time.log is so funny :)
