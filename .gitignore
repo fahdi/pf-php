@@ -2,3 +2,4 @@
 *.idea/**.xml
 /dummy.php
 /api-ignore.php
+/vendor/
