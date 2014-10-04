@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">31</span>
+                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">14</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-965346268"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1917485531"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-965346268" class="accordion-body collapse in">
+            <div id="namespace-1917485531" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -261,16 +261,16 @@ associated with a particular trip.</em></p>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$boardingPasses</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">__construct(\stdClass  <span class="argument">$boardingPasses</span>) </pre>
                 <p><em>Constructor</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>\stdClass</td>
                                 <td>$boardingPasses </td>
-                                <td></td>
+                                <td><p>an array of objects each of different type of Boarding passes.</p></td>
                             </tr>
                                             </table>
                 
@@ -295,13 +295,18 @@ associated with a particular trip.</em></p>
             <article class="method">
                 <h3 class="public ">TripString()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">TripString() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">TripString() : string</pre>
+                <p><em>Define how to convert a trip to a string. This function takes an object of class &#039;Trip&#039; and converts each
+boarding pass within it&#039;s object to a string using the object&#039;s respective class&#039; toString() method</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>$str  Complete string for the whole human readable instructions each
+created individually for all boarding passes.</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -366,7 +371,7 @@ associated with a particular trip.</em></p>
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
                     on 
 Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in /Users/fahadmurtaza/Sites/pf-php/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
-October 4th, 2014 at 02:14.
+October 4th, 2014 at 05:56.
                 </section>
             </section>
         </section>
