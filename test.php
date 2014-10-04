@@ -9,8 +9,6 @@ echo "Should print:  'Departure: Madrid', 'Arrival:Barcelona', 'Seat:45B', 'Trai
 echo "<br/><br/><br/>print_r(new TrainBoardingPass('Madrid', 'Barcelona', '45B', '78A'));<br/><br/>###########################################################################################<br/><br/><br/>";
 echo "Result:<pre>";
 print_r(new TrainBoardingPass('Madrid', 'Barcelona', '45B', '78A'));
-$a = new TrainBoardingPass('Madrid', 'Barcelona', '45B', '78A');
-echo $a;
 echo "</pre>";
 
 echo "<br/><br/><br/><br/><br/>###########################################################################################<br/><br/>";
