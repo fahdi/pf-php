@@ -2,7 +2,7 @@
 
 	Guide time allowed: 2 hours Task
 
-You are given a stack of boarding cards for various transportations that will take you from a point A to point B via several stops on the way. All of the boarding cards are out of order and you don't know where your journey starts, nor where it ends. Each boarding card contains information about seat assignment, and means of transportation (such as flight number, bus number etc).
+You are given a stack of boarding cards for various transportation types that will take you from a point A to point B via several stops on the way. All of the boarding cards are out of order and you don't know where your journey starts, nor where it ends. Each boarding card contains information about seat assignment, and means of transportation (such as flight number, bus number etc).
 
 Write an API that lets you sort this kind of list and present back a description of how to complete your journey.
 
@@ -48,20 +48,22 @@ Hint: we are not looking for a solution designed to demonstrate your entire know
 # Dev Stack Used
 
 MAMP Pro with PHP 5.5.10
-Sublime Edit 3
-PhpStorm 7.1
-Terminal for php cli (Used html based output so CLI won't be clean and practically useless in test)
+- Sublime Edit 3
+- PhpStorm 7.1
+- Terminal for php cli (Used html based output so CLI won't be clean and practically useless in test)
+- php doc for documentation
+- composer for getting phpdoc as PEAR was not working fine
 
 
-# Underatanding/ Methodology
+# Understanding/ Methodology
 
 - Regular OOP based PHP is used for creating the API. 
 - I have kept the testing simple. 
-- The boarding passes/cards have this follwing common info so a genric pass consists of:
+- The boarding passes/cards have this following common info so a generic pass consists of:
 	- Departure Location
 	- Arrival Location
 	- Seat #
-- A train, plane, airport, aiport bus or any other terminal boarding passes have additional info that is the repective train #, flight #, bus #, terminal #, Gate # etc. This means is one super object for the boarding pass and for the bus, plane, train, airport bus etc, there is additional info with the respetive detail.
+- A train, plane, airport, airport bus or any other terminal boarding passes have additional info that is the respective train #, flight #, bus #, terminal #, Gate # etc. This means is one super object for the boarding pass and for the bus, plane, train, airport bus etc, there is additional info with the respective detail.
 - Since there is extra info pertaining to each class, on top of a boarding pass class, this enables me to make a base class and use DRY principle to inherit other kinds of passes from it.
 - After creating the respective classes, each class can be used to create a boparding bass of certain type all inheriting from the base class.
 - Another class is TripSorter which gets an object consisting of multiple objects with each being from one type of boarding pass objects (Train, Flight, Airport etc). So it takes these are sorts them.
@@ -69,6 +71,8 @@ Terminal for php cli (Used html based output so CLI won't be clean and practical
 
 
 # Example Usage
+
+As in index.php file:
 
 	<?php
 	include_once('api.php');
@@ -91,10 +95,10 @@ It should output sorted list. There is test code in test.php which tests it with
 
 # I admit
 
-- Having worked extensively on CMS systems hasn't helped my OOP skills and rusted my skills. Damn you wordpress!
-- Had too much distraction due to construction work I am managing at home. Thats why my time.log is so funny :)
-- My focus had been more on the ' ability to deliver an appropriate, simple solution to a given problem' than actually working on organizing the code 
+- Having worked extensively on CMS systems hasn't helped my OOP skills and rusted my skills. Damn you Wordpress!
+- Had too much distraction due to construction work I am managing at home. That is why my time.log is so funny :)
+- My focus had been more on the 'ability to deliver an appropriate, simple solution to a given problem' than actually working on organizing the code. I tried though!
 - I am a lazy programmer still learning to do proper TDD. My tests are only useful to me. I should spend one complete month with PHP Unit alone.
 - There are three steps in the sorting alo each of Oh(n) = 3n. I believe it can be improved but I admit I couldn't think of that right now.
-- After finishing this project, I searched github for similar solutions and landed here https://github.com/irfan/tripsorter. I am really impressed by how irfan has done it. That is essentially the way it should be done and I will go through that project to learn from him. And if I get hired after this test, I'd have a lot to learn from all people at the company specially Irfan. 
+- After finishing this project, I searched GitHub for similar solutions and landed here https://github.com/irfan/tripsorter. I am really impressed by how Irfan has done it. That is essentially the way it should be done and I will go through that project to learn from him. And if I get hired after this test, I'd have a lot to learn from all people at the company specially Irfan.
 - I want to delete all my code after having a look at https://github.com/irfan/tripsorter

@@ -1,5 +1,4 @@
-*.idea/**/**.xml
-*.idea/**.xml
+/*.idea
 /dummy.php
 /api-ignore.php
 /vendor/
