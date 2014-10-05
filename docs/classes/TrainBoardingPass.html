@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">14</span>
+                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">9</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1624658774"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-572236934"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1624658774" class="accordion-body collapse in">
+            <div id="namespace-572236934" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -168,7 +168,7 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\</small>TrainBoardingPass</h1>
-                    <p><em>Train boarding pass. Child of BoardingPass. Adds train information to the basic boarding pass.</em></p>
+                    <p><em>Class TrainBoardingPass*</em></p>
                     <p>Each mode of transportation will extend BoardingPass
 and add properties and methods that are specific
 to that particular mode of transportation. Sweet!</p>
@@ -196,6 +196,7 @@ to that particular mode of transportation. Sweet!</p>
                                                                     <a href="../classes/TrainBoardingPass.html#method_toString" class="">toString()</a><br />
                                                             </section>
                             <section class="span4">
+                                                                    <a href="../classes/TrainBoardingPass.html#property_train" class="">$train</a><br />
                                                                     <a href="../classes/BoardingPass.html#property_departureLocation" class="">$departureLocation</a><br />
                                                                     <a href="../classes/BoardingPass.html#property_arrivalLocation" class="">$arrivalLocation</a><br />
                                                                     <a href="../classes/BoardingPass.html#property_seat" class="">$seat</a><br />
@@ -269,15 +270,39 @@ to that particular mode of transportation. Sweet!</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
+            <a id="property_train" name="property_train" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$train</h3>
+                <pre class="signature">$train : string</pre>
+                <p><em></em></p>
+                <p>Train # on the train boarding pass</p>
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
             <a id="property_departureLocation" name="property_departureLocation" class="anchor"></a>
             <article class="property">
                 <h3 class="public ">$departureLocation</h3>
-                <pre class="signature">$departureLocation : </pre>
+                <pre class="signature">$departureLocation : string</pre>
                 <p><em></em></p>
                 <p>Departing point for a boarding pass. Origin of the traveller</p>
 
                                 <h4>Type</h4>
-                
+                string
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -298,12 +323,12 @@ to that particular mode of transportation. Sweet!</p>
             <a id="property_arrivalLocation" name="property_arrivalLocation" class="anchor"></a>
             <article class="property">
                 <h3 class="public ">$arrivalLocation</h3>
-                <pre class="signature">$arrivalLocation : </pre>
+                <pre class="signature">$arrivalLocation : string</pre>
                 <p><em></em></p>
                 <p>Arrival Location for a boarding pass. This is the destination point for one leg of trip, for a traveller</p>
 
                                 <h4>Type</h4>
-                
+                string
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -324,12 +349,12 @@ to that particular mode of transportation. Sweet!</p>
             <a id="property_seat" name="property_seat" class="anchor"></a>
             <article class="property">
                 <h3 class="public ">$seat</h3>
-                <pre class="signature">$seat : </pre>
+                <pre class="signature">$seat : string</pre>
                 <p><em></em></p>
                 <p>Seat # for a boarding pass, common to all kinds of boarding passes</p>
 
                                 <h4>Type</h4>
-                
+                string
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -351,7 +376,7 @@ to that particular mode of transportation. Sweet!</p>
             <article class="property">
                 <h3 class="private ">$departureLocation</h3>
                 <pre class="signature">$departureLocation : </pre>
-                <p><em></em></p>
+                <p><em>properties initialization for BoardingPass</em></p>
                 
 
                                 <h4>Type</h4>
@@ -392,7 +417,14 @@ to that particular mode of transportation. Sweet!</p>
                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                    <tr>
+                        <th>
+                            property-read
+                        </th>
+                        <td>
+                                                            <p>Arrival Location for a boarding pass. This is the destination point for one leg of trip, for a traveller</p>
+                                                    </td>
+                    </tr>
                             </table>
         </aside>
     </div>
@@ -418,7 +450,14 @@ to that particular mode of transportation. Sweet!</p>
                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                    <tr>
+                        <th>
+                            property-read
+                        </th>
+                        <td>
+                                                            <p>Seat # for a boarding pass, common to all kinds of boarding passes</p>
+                                                    </td>
+                    </tr>
                             </table>
         </aside>
     </div>
@@ -706,7 +745,7 @@ span multiple lines.</p></td>
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
                     on 
 Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in /Users/fahadmurtaza/Sites/pf-php/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
-October 4th, 2014 at 05:56.
+October 5th, 2014 at 10:05.
                 </section>
             </section>
         </section>

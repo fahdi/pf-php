@@ -37,19 +37,26 @@ ini_set('memory_limit', '-1');
  * and add properties and methods that are specific
  * to that particular mode of transportation. Sweet!
  *
- * @property  $departureLocation Departing point for a boarding pass. Origin of the traveller
- * @property  $arrivalLocation Arrival Location for a boarding pass. This is the destination point for one leg of trip, for a traveller
- * @property  $seat Seat # for a boarding pass, common to all kinds of boarding passes
+ * @property-read string $departureLocation Departing point for a boarding pass. Origin of the traveller
  *
+ * @property-read string $arrivalLocation Arrival Location for a boarding pass. This is the destination point for one leg of trip, for a traveller
+ *
+ * @property-read string $seat Seat # for a boarding pass, common to all kinds of boarding passes
  */
 class BoardingPass
 {
-	/*
+	/**
 	 *  properties initialization for BoardingPass
 	 */
 
 	private $departureLocation = '';
+	/**
+	 * @property-read string $arrivalLocation Arrival Location for a boarding pass. This is the destination point for one leg of trip, for a traveller
+	 */
 	private $arrivalLocation = '';
+	/**
+	 * @property-read string $seat Seat # for a boarding pass, common to all kinds of boarding passes
+	 */
 	private $seat = '';
 
 	/**
@@ -130,6 +137,12 @@ class BoardingPass
 /**
  * Train boarding pass. Child of BoardingPass. Adds train information to the basic boarding pass.
  */
+
+/**
+ * Class TrainBoardingPass*
+ *
+ * @property-write string $train Train # on the train boarding pass
+ */
 class TrainBoardingPass extends BoardingPass
 {
 	private $train;
@@ -181,6 +194,14 @@ class AirportBusBoardingPass extends BoardingPass
 	/**
 	 * Constructor for AirportBusBoardingPass
 	 */
+
+	/**
+	 * Constructor for TrainBoardingPass
+	 *
+	 * @param string $departureLocation Departing point for a boarding pass. Origin of the traveller
+	 * @param string $arrivalLocation Arrival Location for a boarding pass. This is the destination point for one leg of trip, for a traveller
+	 * @param string $seat Seat # for a boarding pass, common to all kinds of boarding passes
+	 */
 	function __construct($departureLocation, $arrivalLocation, $seat = null)
 	{
 		parent::__construct($departureLocation, $arrivalLocation, $seat);
@@ -195,7 +216,6 @@ class AirportBusBoardingPass extends BoardingPass
 
 	/**
 	 * Converts an object of AirportBusBoardingPass into human readable instruction set. This relates to only Airport passes.
-	 *
 	 */
 	public function toString()
 	{
@@ -210,9 +230,9 @@ class AirportBusBoardingPass extends BoardingPass
  * Flight boarding pass which extends BoardingPass
  * Adds additional properties to BoardingPass i.e flight #, gate # (to reach the airport flight bus), airport counter # etc (for luggage drop off)
  *
- * @property string $flight Each flight has a flight number
- * @property string $gate The gate # to reach the airport flight bus
- * @property string $counter which is used in case some one drops off luggage. This can't always be the case ( web check in for example)
+ * @property-read string $flight Each flight has a flight number
+ * @property-read string $gate The gate # to reach the airport flight bus
+ * @property-read string $counter which is used in case some one drops off luggage. This can't always be the case ( web check in for example)
  */
 class FlightBoardingPass extends BoardingPass
 {
@@ -257,6 +277,10 @@ class FlightBoardingPass extends BoardingPass
 
 /**
  * The trip sorter "class". Contains all the sorting algorithm for n number of of boarding passes.
+ *
+ *
+ * @property $arrivalIndex An associative array with the arrival locations being the key for the arrays
+ * @property $departureIndex An associative array with the departure locations being the key for the arrays
  */
 class TripSorter
 {
@@ -265,6 +289,8 @@ class TripSorter
 
 	/**
 	 * Constructor for TripSorter. It takes a Trip object and sorts the internal objects
+	 *
+	 * @param array $boardingPasses It is an array of objects each of different type of Boarding passes.
 	 */
 	function TripSorter($boardingPasses)
 	{
